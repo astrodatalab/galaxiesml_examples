@@ -22,7 +22,7 @@ checkpoint_filepath = f'/data2/models/{model_name}/checkpoints/cp.ckpt'
 checkpoint_dir = os.path.dirname(checkpoint_filepath)
 log_dir = os.path.join('/data2/logs/', model_name)
 
-GB_LIMIT = 2
+GB_LIMIT = 10
 
 gpus = tf.config.list_physical_devices('GPU')
 if gpus:
@@ -37,10 +37,10 @@ if gpus:
         
         
 
-IMAGE_SHAPE = (5, 127, 127)
+IMAGE_SHAPE = (5, 64, 64)
 NUM_DENSE_UNITS = 200
 BATCH_SIZE = 256
-NUM_EPOCHS = 500
+NUM_EPOCHS = 200
 LEARNING_RATE = 0.0001
 Z_MAX = 4
 hparams = {
@@ -51,9 +51,10 @@ hparams = {
     'z_max': Z_MAX
 }
 
-TRAIN_PATH = f'/data/HSC/HSC_v6/step2A/127x127/5x127x127_training_with_morphology.hdf5'
-VAL_PATH = '/data/HSC/HSC_v6/step2A/127x127/5x127x127_validation_with_morphology.hdf5'
-TEST_PATH = '/data/HSC/HSC_v6/step2A/127x127/5x127x127_testing_with_morphology.hdf5'
+
+TRAIN_PATH = f'E:/Datasets/5x64x64_training_with_morphology.hdf5'
+VAL_PATH = f'E:/Datasets/5x64x64_validation_with_morphology.hdf5'
+TEST_PATH = f'E:/Datasets/5x64x64_testing_with_morphology.hdf5'
 
 #TRAIN_PATH = f'/data/HSC/HSC_v6/step2A/127x127/5x127x127_training_with_morphology.hdf5'
 #VAL_PATH = '/data/HSC/HSC_v6/step2A/127x127/5x127x127_parameterization_set_1.hdf5'
@@ -122,7 +123,7 @@ def negative_loglikelihood(targets, estimated_distribution):
     return -estimated_distribution.log_prob(targets)
 
 
-input_cnn = Input(shape=(5,127,127))
+input_cnn = Input(shape=(5,64,64))
 input_nn = Input(shape=(5,))
 # CNN
 conv1 = Conv2D(32, kernel_size=(3, 3), activation='tanh', padding='same', data_format='channels_first')(input_cnn)

@@ -1,0 +1,18 @@
+# Core Scientific Packages
+numpy==1.23.5
+pandas==1.5.3
+matplotlib==3.6.3
+scipy==1.10.1
+seaborn==0.12.2
+h5py==3.8.0
+astropy==5.2.2
+tqdm==4.65.0
+tabulate==0.9.0
+scikit-learn==1.2.2
+
+# TensorFlow & GPU Support (Ensure CUDA 11.2 and cuDNN 8.1)
+tensorflow-gpu==2.10.1
+tensorflow-probability==0.17.0
+
+# Logging & Visualization
+tensorboard==2.10.1
